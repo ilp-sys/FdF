@@ -6,17 +6,16 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 23:08:35 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/16 22:57:15 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/19 21:36:25 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FdF.h"
+#include "../includes/FdF.h"
 
 int	main(int argc, char *argv[])
 {
-	//some mlx APIs
-	get_input(argc, argv);
-	//2dim_to_3dim()
-	//project()
+	t_map	map;
+
+	map = get_input(argc, argv);
 	return (0);
 }

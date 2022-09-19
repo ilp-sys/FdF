@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 23:07:20 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/17 16:09:36 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/19 18:39:31 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@
 # include <fcntl.h>
 # include <math.h>
 
-# include <mlx.h>
-# include "libft/libft.h"
+//# include "../mlx/mlx.h"
+# include "../libft/libft.h"
+# include "get_next_line.h"
 
-# define BUFFER_SIZE 42
+# define DEFAULT_COLOR 42
 
 typedef struct s_pnt
 {
@@ -41,8 +42,8 @@ typedef struct s_map
 //main.c
 int		main(int argc, char *argv[]);
 
-//parsing.h
-void	get_input(int argc, char *argv[]);
+//parsing.c
+t_map	get_input(int argc, char *argv[]);
 
 //fdf_utils.c
 void	err_exit(const char *err_str);

@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_utils.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/16 02:19:41 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/16 02:52:34 by jiwahn           ###   ########.fr       */
+/*   Created: 2022/09/18 16:52:50 by jiwahn            #+#    #+#             */
+/*   Updated: 2022/09/18 17:02:53 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FdF.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-void	err_exit(const char *err_str)
+# include "../libft/libft.h"
+
+# define BUFFER_SIZE 42
+
+typedef struct s_str
 {
-	perror(err_str);
-	exit(EXIT_FAILURE);
-}
+	int		len;
+	char	*str;
+}t_str;
+
+char	*get_next_line(int fd);
+
+#endif
