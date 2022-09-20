@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:19:45 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/19 22:14:49 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/20 22:46:35 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	read_map(int fd, t_list **map_buf)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
+		line[ft_strlen(line) - 1] = '\0';
 		ft_lstadd_back(map_buf, ft_lstnew(line));
 		i++;
 	}
@@ -80,7 +81,7 @@ static void	fill_map(t_map *map, t_list *map_buf)
 			if (*(split_comma + 1))
 				(map->data)[i][j].color = ft_atoi(*(split_comma + 1));
 			else
-				(map->data)[i][j].color = DEFAULT_COLOR;
+				(map->data)[i][j].color = 0xFFFFFF;
 			j++;
 			free_split(split_comma);
 		}

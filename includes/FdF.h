@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 23:07:20 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/20 14:39:43 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/20 22:18:58 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "../libft/libft.h"
 # include "get_next_line.h"
 
-# define DEFAULT_COLOR 		0xFFFFFF
+# define DEFAULT_COLOR 		0xFFFFFFFF
 
 # define WIN_WIDTH			1920
 # define WIN_HEIGHT			1080
@@ -73,7 +73,7 @@ int		main(int argc, char *argv[]);
 t_map	get_input(int argc, char *argv[]);
 
 //project.c
-void	project(t_mlx *mlx, t_map map);
+void	project(t_mlx *mlx, t_map map, t_img *img);
 
 //fdf_utils.c
 void	err_exit(const char *err_str);
