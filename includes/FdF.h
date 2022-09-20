@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 23:07:20 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/19 18:39:31 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/20 10:06:13 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,15 @@
 # include <fcntl.h>
 # include <math.h>
 
-//# include "../mlx/mlx.h"
+# include "../mlx/mlx.h"
 # include "../libft/libft.h"
 # include "get_next_line.h"
 
 # define DEFAULT_COLOR 42
+
+# define X_EVENT_KEY_PRESS	2
+# define X_EVENT_KEY_EXIT	17
+# define KEY_ESC			53
 
 typedef struct s_pnt
 {
