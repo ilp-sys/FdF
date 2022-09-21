@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 23:07:20 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/20 22:18:58 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/21 10:32:58 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "../libft/libft.h"
 # include "get_next_line.h"
 
-# define DEFAULT_COLOR 		0xFFFFFFFF
+# define DEFAULT_COLOR 		0xFFFFFF
 
 # define WIN_WIDTH			1920
 # define WIN_HEIGHT			1080
@@ -35,12 +35,6 @@
 # define X_EVENT_KEY_PRESS	2
 # define X_EVENT_KEY_EXIT	17
 # define KEY_ESC			53
-
-typedef struct	s_mlx
-{
-	void	*mlx;
-	void	*win;
-}t_mlx;
 
 //bpp		bits per pixel
 //size_l	line length	
@@ -66,6 +60,14 @@ typedef struct	s_map
 	t_pnt	**data;
 }t_map;
 
+typedef struct	s_info
+{
+	void	*mlx;
+	void	*win;
+	t_img	img;
+	t_map	map;
+}t_info;
+
 //main.c
 int		main(int argc, char *argv[]);
 
@@ -73,7 +75,7 @@ int		main(int argc, char *argv[]);
 t_map	get_input(int argc, char *argv[]);
 
 //project.c
-void	project(t_mlx *mlx, t_map map, t_img *img);
+void	project(t_info *info);
 
 //fdf_utils.c
 void	err_exit(const char *err_str);

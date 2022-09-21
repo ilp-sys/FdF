@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:19:45 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/20 22:46:35 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/21 10:33:12 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	fill_map(t_map *map, t_list *map_buf)
 			if (*(split_comma + 1))
 				(map->data)[i][j].color = ft_atoi(*(split_comma + 1));
 			else
-				(map->data)[i][j].color = 0xFFFFFF;
+				(map->data)[i][j].color = DEFAULT_COLOR;
 			j++;
 			free_split(split_comma);
 		}
