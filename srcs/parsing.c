@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:19:45 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/21 10:33:12 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/22 13:35:14 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,9 @@ static void	fill_map(t_map *map, t_list *map_buf)
 		while (split_space[j])
 		{
 			split_comma = ft_split(split_space[j], ',');
-			(map->data)[i][j].relief = ft_atoi(*split_comma);
+			(map->data)[i][j].x = i;
+			(map->data)[i][j].y = j;
+			(map->data)[i][j].z = ft_atoi(*split_comma);
 			if (*(split_comma + 1))
 				(map->data)[i][j].color = ft_atoi(*(split_comma + 1));
 			else
@@ -95,14 +97,12 @@ static void	fill_map(t_map *map, t_list *map_buf)
 	}
 }
 
-t_map	get_input(int argc, char *argv[])
+t_map	get_input(char *argv[])
 {
 	int		fd;
 	t_map	map;
 	t_list	*map_buf;
 
-	if (argc != 2)
-		err_exit("Usage) ./FdF [map_path]");
 	if (ft_strnstr(ft_strrchr(argv[1], '.'), ".fdf", 4) == NULL)
 		err_exit("Wrong file format");
 	fd = open(argv[1], O_RDONLY);
