@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 23:07:20 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/22 13:36:30 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/23 13:25:25 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,8 @@
 
 # define DEFAULT_COLOR 		0x00FFFFFF
 
-# define WIN_WIDTH			1920
-# define WIN_HEIGHT			1080
-
-# define IMG_WIDTH			100
-# define IMG_HEIGHT			100
-
-# define GRID_WIDTH			3
-# define GRID_HEIGHT		3
+# define WIDTH				1920
+# define HEIGHT				1080
 
 # define X_EVENT_KEY_PRESS	2
 # define MOUSE_BTN_PRESS	4
@@ -88,6 +82,9 @@ int		main(int argc, char *argv[]);
 t_map	get_input(char *argv[]);
 
 //project.c
+t_pnt	project(t_pnt *pnt, t_map map);
+
+//render.c
 void	render(t_info *info);
 
 //fdf_utils.c

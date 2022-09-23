@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:39:21 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/22 19:52:16 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/23 14:12:22 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@ void	put_pixel_to_img(int x, int y, int color, t_info *info)
 {
 	int	i;
 
-	if (x >= 0 && x < WIN_WIDTH && y >= 0 && y <= WIN_HEIGHT)
+	if (x >= 0 && x < WIDTH && y >= 0 && y <= HEIGHT)
 	{
 		i = (x * info->img.bpp / 8) + (y * info->img.size_l);
-		printf("put pixel to data[%d]\n", i);
 		info->img.data[i] = color;
 		info->img.data[++i] = color >> 8;
 		info->img.data[++i] = color >> 16;
@@ -41,7 +40,6 @@ void	draw_line(t_pnt pnt1, t_pnt pnt2, t_info *info)
 	sign.y = pnt1.y < pnt2.y ? 1 : -1;
 	error[0] = delta.x - delta.y;
 	cur = pnt1;
-	printf("draw line for (x:%d) (y:%d)\n", cur.x, cur.y);
 	while (cur.x != pnt2.x || cur.y != pnt2.y)
 	{
 		put_pixel_to_img(cur.x, cur.y, pnt1.color, info);
@@ -58,15 +56,42 @@ void	draw_line(t_pnt pnt1, t_pnt pnt2, t_info *info)
 	}
 }
 
+/*
+void	bresenham(int x1, int y1, int x2, int y2)
+{
+	int dx, dy, incrE, incrNE, D, x, y;
+
+	dx = x2 - x2; dy = y2 - y1;
+	D = 2 * dy - dx;
+	incrE = 2 * dy;
+	incrNE = 2 * dy - 2 * dx;
+	x = x1; y = y1;
+	while (x < x2)
+	{
+		put_pixel_to_img(x, y);
+		if (D <= 0)
+		{
+			D += incrE;
+			x++;
+		}
+		else 
+		{
+			D += incrNE;
+			x++; y++;
+		}
+	}
+}
+*/
+
 void	render(t_info *info)
 {
 	t_map	map = info->map;
+
 	//draw_background()
 	for (int i = 0; i < info->map.row; i++)
 	{
 		for (int j = 0; j < info->map.col; j++)
 		{
-			//add projection
 			draw_line(project(&map.data[i][j], map), project(&map.data[i + 1][j], map), info);
 			draw_line(project(&map.data[i][j], map), project(&map.data[i][j + 1], map), info);
 		}

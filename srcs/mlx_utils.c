@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 13:10:27 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/22 13:18:17 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/23 13:27:33 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	kill(void)
 
 void	init_img(t_info *info)
 {
-	info->img.img_ptr = mlx_new_image(info->mlx, IMG_WIDTH, IMG_HEIGHT);
+	info->img.img_ptr = mlx_new_image(info->mlx, WIDTH, HEIGHT);
 	info->img.data = (int *)mlx_get_data_addr(info->img.img_ptr, &info->img.bpp, &info->img.size_l, &info->img.endian);
 }
 
