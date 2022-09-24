@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 23:07:20 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/24 16:42:20 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/24 17:43:48 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_mouse
 typedef struct	s_img
 {
 	void	*img_ptr;
-	int		*data;
+	char	*data;
 	int		size_l;
 	int		bpp;
 	int		endian;

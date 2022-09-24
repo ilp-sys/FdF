@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 13:08:17 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/24 17:23:03 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/24 18:07:36 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,16 @@ void	isometric(t_pnt *pnt)
 
 t_pnt	project(t_pnt pnt, t_map map)
 {
-	const int	zoom = 5;
-	(void)map;
+	int	zoom = (WIDTH * HEIGHT) / (map.col * map.row) / 300;
+
 	swap(&pnt);
+	printf("%d\n", zoom);
 	pnt.x *= zoom;
 	pnt.y *= zoom;
 	pnt.z *= zoom;
 	isometric(&pnt);
-	pnt.x += 50;
-	pnt.y += 50;
+	pnt.x += WIDTH / 3;
+	pnt.y += HEIGHT / 3;
 	return (pnt);
 }
 
