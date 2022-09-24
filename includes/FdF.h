@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 23:07:20 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/23 13:25:25 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/24 16:42:20 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "../libft/libft.h"
 # include "get_next_line.h"
 
-# define DEFAULT_COLOR 		0x00FFFFFF
+# define DEFAULT_COLOR 		0xFFFFFF
 
 # define WIDTH				1920
 # define HEIGHT				1080
@@ -46,7 +46,7 @@ typedef struct s_mouse
 typedef struct	s_img
 {
 	void	*img_ptr;
-	int		*data;	//or char *addr
+	int		*data;
 	int		size_l;
 	int		bpp;
 	int		endian;
@@ -82,10 +82,10 @@ int		main(int argc, char *argv[]);
 t_map	get_input(char *argv[]);
 
 //project.c
-t_pnt	project(t_pnt *pnt, t_map map);
+t_pnt	project(t_pnt pnt, t_map map);
 
 //render.c
-void	render(t_info *info);
+int		render(t_info *info);
 
 //fdf_utils.c
 void	err_exit(const char *err_str);

@@ -6,7 +6,7 @@
 #    By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/15 23:07:10 by jiwahn            #+#    #+#              #
-#    Updated: 2022/09/22 18:46:42 by jiwahn           ###   ########.fr        #
+#    Updated: 2022/09/23 16:09:25 by jiwahn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRCS = main.c parsing.c project.c render.c \
 
 all :
 	$(MAKE) -C $(LIBFT_DIR) bonus 
-	$(CC) -L$(MLX) $(MLX_FLAGS) $(LIBFT_DIR)$(LIBFT_LIB) $(addprefix $(SRC_DIR), $(SRCS)) -o $(NAME)
+	$(CC) $(CFLAGS) -L$(MLX) $(MLX_FLAGS) $(LIBFT_DIR)$(LIBFT_LIB) $(addprefix $(SRC_DIR), $(SRCS)) -o $(NAME)
 
 fclean : 
 	rm -rf $(wildcard *.o)

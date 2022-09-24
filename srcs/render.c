@@ -6,13 +6,11 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:39:21 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/23 14:12:22 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/24 16:49:10 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/FdF.h"
-
-# define ABS(X) ((X < 0) ? -(X) : X)
 
 void	put_pixel_to_img(int x, int y, int color, t_info *info)
 {
@@ -34,8 +32,8 @@ void	draw_line(t_pnt pnt1, t_pnt pnt2, t_info *info)
 	t_pnt	cur;
 	int		error[2];
 
-	delta.x = ABS(pnt2.x - pnt1.x);
-	delta.y = ABS(pnt2.y - pnt1.y);
+	delta.x = abs(pnt2.x - pnt1.x);
+	delta.y = abs(pnt2.y - pnt1.y);
 	sign.x = pnt1.x < pnt2.x ? 1 : -1;
 	sign.y = pnt1.y < pnt2.y ? 1 : -1;
 	error[0] = delta.x - delta.y;
@@ -56,45 +54,28 @@ void	draw_line(t_pnt pnt1, t_pnt pnt2, t_info *info)
 	}
 }
 
-/*
-void	bresenham(int x1, int y1, int x2, int y2)
+int	render(t_info *info)
 {
-	int dx, dy, incrE, incrNE, D, x, y;
-
-	dx = x2 - x2; dy = y2 - y1;
-	D = 2 * dy - dx;
-	incrE = 2 * dy;
-	incrNE = 2 * dy - 2 * dx;
-	x = x1; y = y1;
-	while (x < x2)
-	{
-		put_pixel_to_img(x, y);
-		if (D <= 0)
-		{
-			D += incrE;
-			x++;
-		}
-		else 
-		{
-			D += incrNE;
-			x++; y++;
-		}
-	}
-}
-*/
-
-void	render(t_info *info)
-{
+	int		i;
+	int		j;
 	t_map	map = info->map;
 
-	//draw_background()
-	for (int i = 0; i < info->map.row; i++)
+	i = 0;
+	while (i < map.col)
 	{
-		for (int j = 0; j < info->map.col; j++)
+		j = 0;
+		while (j < map.row)
 		{
-			draw_line(project(&map.data[i][j], map), project(&map.data[i + 1][j], map), info);
-			draw_line(project(&map.data[i][j], map), project(&map.data[i][j + 1], map), info);
+			//printf("[V] draw line from (%d, %d) to (%d, %d)\n", i, j, i+1, j);
+			if (i + 1 < map.col)
+				draw_line(project(map.data[i][j], map), project(map.data[i + 1][j], map), info);
+			//printf("[H] draw line from (%d, %d) to (%d, %d)\n", i, j, i, j + 1);
+			if (j + 1 < map.row)
+				draw_line(project(map.data[i][j], map), project(map.data[i][j + 1], map), info);
+			j++;
 		}
+		i++;
 	}
 	mlx_put_image_to_window(info->mlx, info->win, info->img.img_ptr, 0, 0);
+	return (0);
 }
