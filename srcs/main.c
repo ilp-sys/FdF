@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 23:08:35 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/24 14:47:49 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/26 18:05:48 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,7 @@ int	main(int argc, char *argv[])
 
 	if (argc == 2)
 	{
-		info.mlx = mlx_init();
-		info.win = mlx_new_window(info.mlx, WIDTH, HEIGHT, "fdf");
-
-		init_img(&info);
-		info.map = get_input(argv);
+		initialize(&info, argv);
 		mlx_loop_hook(info.mlx, &render, &info);
 		event_handler(&info);
 		mlx_loop(info.mlx);

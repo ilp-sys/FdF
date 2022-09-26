@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 23:07:20 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/24 17:43:48 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/26 17:18:58 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <string.h>
+# include <limits.h>
 # include <fcntl.h>
 # include <math.h>
 
@@ -32,14 +32,8 @@
 # define X_EVENT_KEY_PRESS	2
 # define MOUSE_BTN_PRESS	4
 # define MOUSE_BTN_RELEASE	5
-# define MOUSE_MOVE			6
 # define X_EVENT_KEY_EXIT	17
 # define KEY_ESC			53
-
-typedef struct s_mouse
-{
-
-}t_mouse;
 
 //bpp		bits per pixel
 //size_l	line length	
@@ -69,10 +63,11 @@ typedef struct	s_map
 
 typedef struct	s_info
 {
-	void	*mlx;
-	void	*win;
-	t_img	img;
-	t_map	map;
+	void			*mlx;
+	void			*win;
+	t_img			img;
+	t_map			map;
+	unsigned int	zoom;
 }t_info;
 
 //main.c
@@ -82,7 +77,7 @@ int		main(int argc, char *argv[]);
 t_map	get_input(char *argv[]);
 
 //project.c
-t_pnt	project(t_pnt pnt, t_map map);
+t_pnt	project(t_pnt pnt, t_info *info);
 
 //render.c
 int		render(t_info *info);
@@ -95,6 +90,7 @@ int		key_press(int keycode);
 int		kill(void);
 void	init_img(t_info *info);
 void	event_handler(t_info *info);
+void	initialize(t_info *info, char *argv[]);
 
 //mouse_handler.c
 int		mouse_press(int button, int x, int y, void *param);

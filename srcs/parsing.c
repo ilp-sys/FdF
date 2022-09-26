@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:19:45 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/24 17:16:27 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/26 18:44:29 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,7 @@ static void	fill_map(t_map *map, t_list *map_buf)
 			(map->data)[i][j].x = i;
 			(map->data)[i][j].y = j;
 			(map->data)[i][j].z = ft_atoi(*split_comma);
-			if (*(split_comma + 1))
-				(map->data)[i][j].color = ft_atoi(*(split_comma + 1));
-			else
-				(map->data)[i][j].color = DEFAULT_COLOR;
+			(map->data)[i][j].color = DEFAULT_COLOR;
 			j++;
 			free_split(split_comma);
 		}
@@ -103,8 +100,6 @@ t_map	get_input(char *argv[])
 	t_map	map;
 	t_list	*map_buf;
 
-	if (ft_strnstr(ft_strrchr(argv[1], '.'), ".fdf", 4) == NULL)
-		err_exit("Wrong file format");
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		err_exit("open failed");

@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:39:21 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/24 17:42:28 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/26 17:55:05 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	put_pixel_to_img(int x, int y, int color, t_info *info)
 {
 	int	i;
 
-	if (x >= 0 && x < WIDTH && y >= 0 && y <= HEIGHT)
+	if (x > 0 && x < WIDTH && y > 0 && y < HEIGHT)
 	{
 		i = (x * info->img.bpp / 8) + (y * info->img.size_l);
 		info->img.data[i] = color;
@@ -54,6 +54,19 @@ void	draw_line(t_pnt pnt1, t_pnt pnt2, t_info *info)
 	}
 }
 
+void	clear_window(t_info *info)
+{
+	int		i;
+	int		capa;
+	t_img	img;
+
+	i = 0;
+	img = info->img;
+	capa = WIDTH * HEIGHT * 4 - 1;
+	while (i < capa)
+		img.data[i++] = 0;
+}
+
 int	render(t_info *info)
 {
 	int		i;
@@ -61,17 +74,16 @@ int	render(t_info *info)
 	t_map	map = info->map;
 
 	i = 0;
+	clear_window(info);
 	while (i < map.col)
 	{
 		j = 0;
 		while (j < map.row)
 		{
-			//printf("[V] draw line from (%d, %d) to (%d, %d)\n", i, j, i+1, j);
 			if (i + 1 < map.col)
-				draw_line(project(map.data[i][j], map), project(map.data[i + 1][j], map), info);
-			//printf("[H] draw line from (%d, %d) to (%d, %d)\n", i, j, i, j + 1);
+				draw_line(project(map.data[i][j], info), project(map.data[i + 1][j], info), info);
 			if (j + 1 < map.row)
-				draw_line(project(map.data[i][j], map), project(map.data[i][j + 1], map), info);
+				draw_line(project(map.data[i][j], info), project(map.data[i][j + 1], info), info);
 			j++;
 		}
 		i++;

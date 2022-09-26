@@ -6,11 +6,12 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 16:52:29 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/19 15:08:21 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/26 18:42:11 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/FdF.h"
+#include <stdio.h>
 
 static char	*ft_strnmcat(char *s1, const char *s2, size_t n, size_t m)
 {
@@ -48,14 +49,17 @@ static int	re_read(t_str *str, int fd)
 	if (!buf_read)
 		err_exit("memory allocation failed");
 	ret = read(fd, buf_read, BUFFER_SIZE);
-	buf_cpy = (char *)malloc(str->len + ret);
-	if (!buf_cpy)
-		err_exit("memory allocation failed");
-	ft_memcpy(buf_cpy, str->str, str->len);
-	ft_strnmcat(buf_cpy, buf_read, ret, str->len);
-	str->len += ret;
-	free(str->str);
-	str->str = buf_cpy;
+	if (ret)
+	{
+		buf_cpy = (char *)malloc(str->len + ret);
+		if (!buf_cpy)
+			err_exit("memory allocation failed");
+		ft_memcpy(buf_cpy, str->str, str->len);
+		ft_strnmcat(buf_cpy, buf_read, ret, str->len);
+		str->len += ret;
+		free(str->str);
+		str->str = buf_cpy;
+	}
 	free(buf_read);
 	return (ret);
 }

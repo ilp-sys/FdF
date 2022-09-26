@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 13:10:27 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/24 17:43:59 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/26 17:13:28 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,17 @@ void	event_handler(t_info *info)
 {
 	mlx_hook(info->win, X_EVENT_KEY_PRESS, 0, &key_press, NULL);
 	mlx_hook(info->win, X_EVENT_KEY_EXIT, 0, &kill, NULL);
-	mlx_hook(info->win, MOUSE_BTN_PRESS, 0, &mouse_press, NULL);
-	mlx_hook(info->win, MOUSE_BTN_RELEASE, 0, &mouse_release, NULL);
-	mlx_hook(info->win, MOUSE_MOVE, 0, &mouse_move, NULL);
+	mlx_hook(info->win, MOUSE_BTN_PRESS, 0, &mouse_press, info);
+	//mlx_hook(info->win, MOUSE_BTN_RELEASE, 0, &mouse_release, info);
+	//mlx_hook(info->win, MOUSE_MOVE, 0, &mouse_move, info);
+	//mlx_mouse_hook(info->win, mouse_scroll, *info.mouse);
 }
 
+void	initialize(t_info *info, char *argv[])
+{
+	info->mlx = mlx_init();
+	info->win = mlx_new_window(info->mlx, WIDTH, HEIGHT, "fdf");
+	init_img(info);
+	info->zoom = 1;
+	info->map = get_input(argv);
+}

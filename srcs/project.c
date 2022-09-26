@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 13:08:17 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/24 18:07:36 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/26 17:19:07 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,12 @@ void	isometric(t_pnt *pnt)
 	pnt->y = -pnt->z + (prev_x + prev_y) * sin(M_PI / 3);
 }
 
-t_pnt	project(t_pnt pnt, t_map map)
+t_pnt	project(t_pnt pnt, t_info *info)
 {
-	int	zoom = (WIDTH * HEIGHT) / (map.col * map.row) / 300;
-
 	swap(&pnt);
-	printf("%d\n", zoom);
-	pnt.x *= zoom;
-	pnt.y *= zoom;
-	pnt.z *= zoom;
+	pnt.x *= info->zoom;
+	pnt.y *= info->zoom;
+	pnt.z *= info->zoom;
 	isometric(&pnt);
 	pnt.x += WIDTH / 3;
 	pnt.y += HEIGHT / 3;
