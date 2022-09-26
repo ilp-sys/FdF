@@ -6,11 +6,11 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:39:21 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/26 17:55:05 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/26 19:38:49 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/FdF.h"
+#include "../includes/FdF.h"
 
 void	put_pixel_to_img(int x, int y, int color, t_info *info)
 {
@@ -71,9 +71,10 @@ int	render(t_info *info)
 {
 	int		i;
 	int		j;
-	t_map	map = info->map;
+	t_map	map;
 
 	i = 0;
+	map = info->map;
 	clear_window(info);
 	while (i < map.col)
 	{
@@ -81,9 +82,11 @@ int	render(t_info *info)
 		while (j < map.row)
 		{
 			if (i + 1 < map.col)
-				draw_line(project(map.data[i][j], info), project(map.data[i + 1][j], info), info);
+				draw_line(project(map.data[i][j], info), \
+						project(map.data[i + 1][j], info), info);
 			if (j + 1 < map.row)
-				draw_line(project(map.data[i][j], info), project(map.data[i][j + 1], info), info);
+				draw_line(project(map.data[i][j], info), \
+						project(map.data[i][j + 1], info), info);
 			j++;
 		}
 		i++;

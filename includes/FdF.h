@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 23:07:20 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/26 17:18:58 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/26 19:41:24 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,30 +71,33 @@ typedef struct	s_info
 }t_info;
 
 //main.c
+void	err_exit(const char *err_str);
 int		main(int argc, char *argv[]);
 
 //parsing.c
 t_map	get_input(char *argv[]);
 
 //project.c
+void	isometric(t_pnt *pnt);
 t_pnt	project(t_pnt pnt, t_info *info);
 
 //render.c
+void	put_pixel_to_img(int x, int y, int color, t_info *info);
+void	draw_line(t_pnt pnt1, t_pnt pnt2, t_info *info);
+void	clear_window(t_info *info);
 int		render(t_info *info);
 
-//fdf_utils.c
-void	err_exit(const char *err_str);
-
-//mlx_utils.c
+//event_handler.c
+void	event_handler(t_info *info);
+int		mouse_press(int button, int x, int y, void *param);
 int		key_press(int keycode);
 int		kill(void);
-void	init_img(t_info *info);
-void	event_handler(t_info *info);
-void	initialize(t_info *info, char *argv[]);
 
-//mouse_handler.c
-int		mouse_press(int button, int x, int y, void *param);
-int		mouse_release(int button, int x, int y, void *param);
-int		mouse_move(int x, int y, void *param);
+//utils.c
+void	swap(t_pnt *pnt);
+int		get_split_cnt(char **splitted);
+void	free_split(char **splitted);
+void	err_exit(const char *err_str);
+
 
 #endif

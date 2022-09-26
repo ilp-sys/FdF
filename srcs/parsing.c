@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:19:45 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/26 18:44:29 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/26 19:47:09 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,12 @@ static void	read_map(int fd, t_list **map_buf)
 	}
 }
 
-static void	map_init(t_map *map)
+static void	set_pnt(int i, int j, t_pnt *pnt, char *num_str)
 {
-	map->row = 0;
-	map->col = 0;
-	map->data = NULL;
-}
-
-void	free_split(char **splitted)
-{
-	int	i;
-
-	i = 0;
-	while (splitted[i])
-		free(splitted[i++]);
-	free(splitted);
-}
-
-int	get_split_cnt(char **splitted)
-{
-	int	i;
-
-	i = 0;
-	while (splitted[i])
-		i++;
-	return (i);
+	pnt->x = i;
+	pnt->y = j;
+	map->z = ft_atoi(num_str);
+	map->color = DEFAULT_COLOR;
 }
 
 static void	fill_map(t_map *map, t_list *map_buf)
