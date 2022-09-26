@@ -6,7 +6,7 @@
 #    By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/15 23:07:10 by jiwahn            #+#    #+#              #
-#    Updated: 2022/09/26 19:54:06 by jiwahn           ###   ########.fr        #
+#    Updated: 2022/09/26 20:14:03 by jiwahn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIBFT_DIR = libft/
 LIBFT_LIB = libft.a
 
 SRC_DIR = srcs/
-SRCS = main.c parsing.c project.c render.c \
+SRCS = main.c parsing.c project.c render.c render_utils.c\
 	   init.c event_handler.c utils.c get_next_line.c
 
 all :
