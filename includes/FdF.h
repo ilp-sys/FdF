@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 23:07:20 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/26 19:41:24 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/26 20:07:34 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@
 # define X_EVENT_KEY_EXIT	17
 # define KEY_ESC			53
 
-//bpp		bits per pixel
-//size_l	line length	
-typedef struct	s_img
+typedef struct s_img
 {
 	void	*img_ptr;
 	char	*data;
@@ -46,7 +44,7 @@ typedef struct	s_img
 	int		endian;
 }t_img;
 
-typedef struct	s_pnt
+typedef struct s_pnt
 {
 	int	x;
 	int	y;
@@ -54,14 +52,14 @@ typedef struct	s_pnt
 	int	color;
 }t_pnt;
 
-typedef struct	s_map
+typedef struct s_map
 {
 	int		row;
 	int		col;
 	t_pnt	**data;
 }t_map;
 
-typedef struct	s_info
+typedef struct s_info
 {
 	void			*mlx;
 	void			*win;
@@ -82,9 +80,7 @@ void	isometric(t_pnt *pnt);
 t_pnt	project(t_pnt pnt, t_info *info);
 
 //render.c
-void	put_pixel_to_img(int x, int y, int color, t_info *info);
-void	draw_line(t_pnt pnt1, t_pnt pnt2, t_info *info);
-void	clear_window(t_info *info);
+void	bresenham(t_pnt pnt1, t_pnt pnt2, t_info *info);
 int		render(t_info *info);
 
 //event_handler.c
@@ -99,5 +95,13 @@ int		get_split_cnt(char **splitted);
 void	free_split(char **splitted);
 void	err_exit(const char *err_str);
 
+//init.c
+void	init_img(t_info *info);
+void	map_init(t_map *map);
+void	initialize(t_info *info, char *argv[]);
+
+//render_utils.c
+void	clear_window(t_info *info);
+void	put_pixel_to_img(int x, int y, int color, t_info *info);
 
 #endif

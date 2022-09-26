@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:19:45 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/26 19:47:09 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/26 19:57:27 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ static void	set_pnt(int i, int j, t_pnt *pnt, char *num_str)
 {
 	pnt->x = i;
 	pnt->y = j;
-	map->z = ft_atoi(num_str);
-	map->color = DEFAULT_COLOR;
+	pnt->z = ft_atoi(num_str);
+	pnt->color = DEFAULT_COLOR;
 }
 
 static void	fill_map(t_map *map, t_list *map_buf)
@@ -43,33 +43,23 @@ static void	fill_map(t_map *map, t_list *map_buf)
 	int		i;
 	int		j;
 	char	**split_space;
-	char	**split_comma;
 
 	map->col = ft_lstsize(map_buf);
 	map->data = (t_pnt **)malloc(sizeof(t_pnt) * map->col);
 	if (!map->data)
 		err_exit("malloc failed");
-	i = 0;
-	while (i < map->col)
+	i = -1;
+	while (++i < map->col)
 	{
-		j = 0;
+		j = -1;
 		split_space = ft_split(map_buf->content, ' ');
-		(map->data)[i] = (t_pnt *)malloc(sizeof(t_pnt) * get_split_cnt(split_space));
-		while (split_space[j])
-		{
-			split_comma = ft_split(split_space[j], ',');
-			(map->data)[i][j].x = i;
-			(map->data)[i][j].y = j;
-			(map->data)[i][j].z = ft_atoi(*split_comma);
-			(map->data)[i][j].color = DEFAULT_COLOR;
-			j++;
-			free_split(split_comma);
-		}
+		(map->data)[i] = malloc(sizeof(t_pnt) * get_split_cnt(split_space));
+		while (split_space[++j])
+			set_pnt(i, j, &map->data[i][j], split_space[j]);
 		if (!map->row)
 			map->row = j;
 		else if (map->row != j)
 			err_exit("map error");
-		i++;
 		free_split(split_space);
 		map_buf = map_buf->next;
 	}
