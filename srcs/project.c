@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 13:08:17 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/26 19:36:55 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/27 14:15:34 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ t_pnt	project(t_pnt pnt, t_info *info)
 	pnt.z *= info->zoom;
 	isometric(&pnt);
 	pnt.x += WIDTH / 3;
+	pnt.x += info->offset_x;
 	pnt.y += HEIGHT / 3;
+	pnt.y += info->offset_y;
 	return (pnt);
 }

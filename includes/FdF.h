@@ -6,7 +6,7 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 23:07:20 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/26 20:07:34 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/27 14:18:24 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@
 # define MOUSE_BTN_RELEASE	5
 # define X_EVENT_KEY_EXIT	17
 # define KEY_ESC			53
+# define ARROW_UP			126
+# define ARROW_DOWN			125
+# define ARROW_LEFT			123
+# define ARROW_RIGHT		124
 
 typedef struct s_img
 {
@@ -65,6 +69,8 @@ typedef struct s_info
 	void			*win;
 	t_img			img;
 	t_map			map;
+	int				offset_x;
+	int				offset_y;
 	unsigned int	zoom;
 }t_info;
 
@@ -86,7 +92,7 @@ int		render(t_info *info);
 //event_handler.c
 void	event_handler(t_info *info);
 int		mouse_press(int button, int x, int y, void *param);
-int		key_press(int keycode);
+int		key_press(int keycode, void *param);
 int		kill(void);
 
 //utils.c
