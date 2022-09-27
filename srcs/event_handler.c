@@ -6,17 +6,14 @@
 /*   By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 13:10:27 by jiwahn            #+#    #+#             */
-/*   Updated: 2022/09/27 14:22:49 by jiwahn           ###   ########.fr       */
+/*   Updated: 2022/09/27 14:25:40 by jiwahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/FdF.h"
 
-int	key_press(int keycode, void *param)
+int	key_press(int keycode, t_info *info)
 {
-	t_info	*info;
-
-	info = (t_info *)param;
 	if (keycode == ARROW_UP)
 	{
 		if (info->offset_y > INT_MIN)
