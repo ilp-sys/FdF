@@ -6,7 +6,7 @@
 #    By: jiwahn <jiwahn@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/15 23:07:10 by jiwahn            #+#    #+#              #
-#    Updated: 2022/09/26 20:53:05 by jiwahn           ###   ########.fr        #
+#    Updated: 2022/09/27 14:32:44 by jiwahn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ $(OBJS_DIR)%.o : $(SRCS_DIR)%.c $(HEADERS)
 
 $(LIBFT):
 	@echo "$(NAME): $(GREEN)Creating $(LIBFT)...$(RESET)"
-	@$(MAKE) -sC $(LIBFT_DIR)
+	@$(MAKE) -sC $(LIBFT_DIR) bonus
 
 $(MLX):
 	@echo "$(NAME): $(GREEN)Creating $(MLX)...$(RESET)"
